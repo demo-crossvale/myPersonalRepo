@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: solarvillage-mockservice
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: ragrahari
+Implementation-Vendor-Id: ragrahari
+Build-Jdk: 1.8.0_161
+Implementation-URL: http://projects.spring.io/spring-boot/spring-boot-
+ starter-parent/solarvillage-mockservice/
+Created-By: Maven Integration for Eclipse
+

@@ -1,0 +1,4 @@
+domain/model/GovernmentPermit.class
+domain/PermitJdbcRepository$PermitRowMapper.class
+domain/H2SpringApp.class
+domain/PermitJdbcRepository.class
