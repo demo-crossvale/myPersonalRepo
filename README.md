@@ -40,7 +40,9 @@ $ cd ....bpms-eap/bin/
 $ ./jboss-cli.sh -c --controller=127.0.0.1:9990
 ```
 - Set system property value:
-```[standalone@127.0.0.1:9990] /system-property=org.kie.mail.session:add(value="java:jboss/mail/Default")```
+```
+[standalone@127.0.0.1:9990] /system-property=org.kie.mail.session:add(value="java:jboss/mail/Default")
+```
 
 - Set up the main subsystem:
 ```
@@ -54,12 +56,38 @@ $ ./jboss-cli.sh -c --controller=127.0.0.1:9990
 [standalone@127.0.0.1:9990] /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp:write-attribute(name=port,value=2525)
 [standalone@127.0.0.1:9990] exit
 ```
-### Clone, build and install the domain model:
+### Clone, build and install the *domainmodel* and *mockservice*
 1. Clone the repository: https://github.com/ragrahari/neworderpermit.git 
-2. Get into solarvillage-domainmodel folder and execute following:
-```$ maven clean install```
+2. Get into solarvillage-domainmodel folder and execute following: ```$ maven clean install```
+3. Get into solarvillage-mockservice folder and execute following: ```$ maven clean install```
 
+### Clone the SolarVillageProj KIE Project
+1. Login to business-central using URL: http://localhost:8080/business-central and login using the authentication credentials previously added: ```ragrahari/password@1```
+2. Add an organization unit. Go to Authoring -->  Administration and Click on Organization Unit --> Manager Organizational Units
+3. Click on "Add" button to add an organization unit - ```solarvillage```
+4. Go to Repositories --> Clone repository. Provide following information on the pop-up window:
+```
+Repository Name: neworderpermit-repo (or give any name of your wish)
+Organizational Unit: solarvillage
+Git URL: https://github.com/ragrahari/neworderpermit.git 
+Username: *Leave blank*
+Password: *Leave blank*
+```
 
+### Build the SolarVillageProj
+1. In *business-central*, click on Authoring --> Project Authoring and select SolarVillageProj.
+2. Click on *Open Project Editor* 
+3. Select *Dependencies* to add the domainmodel jar file. Click on *Add* and provide the following GAV:
+```
+Group ID: ragrahari
+Artifact ID: solarvillage-domainmodel
+Version: 0.0.1-SNAPSHOT
+```
+4. Save the added dependency and then click on Build --> Build and Deploy
+	You can validate the build on Deploy --> Process Deployments.
+5. You can start processes from Process Management --> Process Definitions screen by starting NewOrder process.
+
+### Setup KIE Server and KIE Container
 
 
 
