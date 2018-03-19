@@ -37,7 +37,7 @@ This is the main process of the project which also acts as a wrapper to the Gove
 If the HOA Approval is **approved**, then the permit continues and invokes the *GovernmentPermit* subprocess and based on it's approval/deniel decides the permit approval and logs the final decision.
 
 Following is the process diagram for NewOrder process:
-**image-for-new-order-process**
+![final-solarvillageproj governmentpermit](https://user-images.githubusercontent.com/20824893/37574768-421e77c2-2af1-11e8-9e56-95c5412f3312.png)
 
 #### GovernmentPermit Process
 This is a subprocess that gets invoked from NewOrder process when the execution requires Government Electrical and Structural permits.
@@ -47,7 +47,7 @@ The execution waits until the government permits are either approved/denied.
 A 5-seconds timer keeps the permit requests waiting until their statuses are decided. The permit is approved only if both electrical and structural permits approved. If the process is denied (at least one process was denied) then a compensation event is triggered that rescinds the permits status in the database.
 
 Following is the process diagram for GovernmentPermit process:
-**image-for-government-permit-process**
+![final-solarvillageproj neworder](https://user-images.githubusercontent.com/20824893/37574769-422ff77c-2af1-11e8-8ee3-59a57db618c3.png)
 
 ### solarvillage-clintscript
 - **env_variables.sh**: Sets variables needed to run the client scripts.
