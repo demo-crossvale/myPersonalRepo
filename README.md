@@ -13,11 +13,12 @@ A java-maven based domain model that includes a java class for New Order Permit 
 
 ### solarvillage-mockservice
 A java-SpringBoot application project that mocks the government agencies' remote online services.
-	- This mock services accepts new permit requests: **/submitPermitRequest**
-	- Provides statuses of electrical and structural permit requests individually: **/getStatusElectrical**, **/getStatusStructural**
-	- Set electrical and/or structural statuses: **/setAllPermit**, **/setElectricalPermit**, **/setStructuralPermit**
-	- Allows deletion/cancellation of permit requests: **/deletePermitRequest**
-	- Allows rescinding permit requests: **/rescindPermitRequest**
+- This mock services accepts new permit requests: **/submitPermitRequest**
+- Provides statuses of electrical and structural permit requests individually: **/getStatusElectrical**, **/getStatusStructural**
+- Set electrical and/or structural statuses: **/setAllPermit**, **/setElectricalPermit**, **/setStructuralPermit**
+- Allows deletion/cancellation of permit requests: **/deletePermitRequest**
+- Allows rescinding permit requests: **/rescindPermitRequest**
+
 When a new permit request is added into the data-base the status for it is : **NOT_STARTED**
 The REST services can set the statuses to: **APPROVED/DENIED/IN_PROGRESS** and BPM Suite processes consume the statuses via REST services to decide the status of the permit requests.
 
@@ -25,10 +26,10 @@ The REST services can set the statuses to: **APPROVED/DENIED/IN_PROGRESS** and B
 A RedHat JBoss BPM Suite based project that consume the domainmodel and mockservice, and consists of two processes - NewOrder and GovernmentPermit. The project can be build and deployed as KJar and processes could be started using business-central or intelligent server curl scripts.
 #### NewOrder Process
 This is the main process of the project which also acts as a wrapper to the GovernmentPermit Process. First of all, the process builds the new permit request and checks if the process requires HOA permit (if the residence is a member of Home Owner's Association - HOA):
-	- If the residence is a member of HOA, an user task is created where the task gets assigned to the sales.
-	- If by one week prior to the HOA meeting, the task doesn't get started by anyone from the *sales* group, then the task is re-assigned to the *executive* group and an email is sent out.
-	- The application waits until the task gets **completed**.
-	- If the HOA Approval is **denied**, then the permit is declined and the the decision is logged and finally the process ends.
+- If the residence is a member of HOA, an user task is created where the task gets assigned to the sales.
+- If by one week prior to the HOA meeting, the task doesn't get started by anyone from the *sales* group, then the task is re-assigned to the *executive* group and an email is sent out.
+- The application waits until the task gets **completed**.
+- If the HOA Approval is **denied**, then the permit is declined and the the decision is logged and finally the process ends.
 
 If the HOA Approval is **approved**, then the permit continues and invokes the *GovernmentPermit* subprocess and based on it's approval/deniel decides the permit approval and logs the final decision.
 
@@ -45,14 +46,14 @@ Following is the process diagram for GovernmentPermit process:
 **image-for-government-permit-process**
 
 ### solarvillage-clintscript
-**env_variables.sh**: Sets variables needed to run the client scripts.
-**get_container_status.sh**: Displays status of intelligent server, containers, and process-definitions.
-**post_new_order.sh**: Create and start a new order permit process instance.
-**get_process_instances.sh**: Lists all of the process-instances.
-**delete_new_order.sh**: Abort a new order permit process instance.
-**list-hoa-tasks.sh**: List of user tasks for potential and/or current owners.
-**claim-start-hoa-task.sh**: Claim and start a HOA User task.
-**complete-hoa-task.sh**: Complete a HOA user task and set whether the order is approved or not.
+- **env_variables.sh**: Sets variables needed to run the client scripts.
+- **get_container_status.sh**: Displays status of intelligent server, containers, and process-definitions.
+- **post_new_order.sh**: Create and start a new order permit process instance.
+- **get_process_instances.sh**: Lists all of the process-instances.
+- **delete_new_order.sh**: Abort a new order permit process instance.
+- **list-hoa-tasks.sh**: List of user tasks for potential and/or current owners.
+- **claim-start-hoa-task.sh**: Claim and start a HOA User task.
+- **complete-hoa-task.sh**: Complete a HOA user task and set whether the order is approved or not.
 
 ## Getting Started:
 ### Installation:
