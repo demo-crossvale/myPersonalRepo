@@ -49,7 +49,7 @@ A 5-seconds timer keeps the permit requests waiting until their statuses are dec
 Following is the process diagram for GovernmentPermit process:
 ![final-solarvillageproj governmentpermit](https://user-images.githubusercontent.com/20824893/37574768-421e77c2-2af1-11e8-9e56-95c5412f3312.png)
 
-### solarvillage-clintscript
+### solarvillage-clientscript
 - **env_variables.sh**: Sets variables needed to run the client scripts.
 - **get_container_status.sh**: Displays status of intelligent server, containers, and process-definitions.
 - **post_new_order.sh**: Create and start a new order permit process instance.
