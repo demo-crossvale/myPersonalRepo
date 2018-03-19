@@ -3,6 +3,7 @@
 ## Overview:
 Solar Village is an energy provider company. The following POC describes the functionality and implementation of the business processes associated with various steps of the requesting permits and their approval process.
 
+
 Solar Village requires a 30 to 40-hour proof of concept (POC) using JBoss BPM Suite. The POC should be able to interact with business and technical associates at Solar Village.
 
 ## Repository Organization:
@@ -24,6 +25,7 @@ The REST services can set the statuses to: **APPROVED/DENIED/IN_PROGRESS** and B
 
 ### SolarVillageProj
 A RedHat JBoss BPM Suite based project that consume the domainmodel and mockservice, and consists of two processes - NewOrder and GovernmentPermit. The project can be build and deployed as KJar and processes could be started using business-central or intelligent server curl scripts.
+
 #### NewOrder Process
 This is the main process of the project which also acts as a wrapper to the GovernmentPermit Process. First of all, the process builds the new permit request and checks if the process requires HOA permit (if the residence is a member of Home Owner's Association - HOA):
 - If the residence is a member of HOA, an user task is created where the task gets assigned to the sales.
@@ -39,8 +41,8 @@ Following is the process diagram for NewOrder process:
 #### GovernmentPermit Process
 This is a subprocess that gets invoked from NewOrder process when the execution requires Government Electrical and Structural permits.
 The process binds the reference-id recieved from its parent process (NewOrder) and builds a permit request requesting the government-mock-service to add an entry in the database for the reference-id. The process splits the token of execution using a parallel gateway so the electrical and structural permit approvals can execute in parallel.
-The execution waits until the government permits are either approved/denied. A 5-seconds timer keeps the permit requests waiting until their statuses are decided. The permit is approved only if both electrical and structural permits approved.
-If the process is denied (at least one process was denied) then a compensation event is triggered that rescinds the permits status in the database.
+The execution waits until the government permits are either approved/denied. 
+A 5-seconds timer keeps the permit requests waiting until their statuses are decided. The permit is approved only if both electrical and structural permits approved. If the process is denied (at least one process was denied) then a compensation event is triggered that rescinds the permits status in the database.
 
 Following is the process diagram for GovernmentPermit process:
 **image-for-government-permit-process**
