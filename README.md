@@ -10,7 +10,7 @@ Solar Village requires a 30 to 40-hour proof of concept (POC) using JBoss BPM Su
 This repository consists of following modules
 
 ### solarvillage-domainmodel
-A java-maven based domain model that includes a java class for New Order Permit Requests. The jar file produced by this model is consumed by the processes created on Red Hat JBoss BPM Suite - business-central.
+A java-maven based domain model that includes a java class for New Order Permit Requests. The jar file produced by this model is consumed by the processes created on Red Hat JBoss BPM Suite - *business-central*.
 
 ### solarvillage-mockservice
 A java-SpringBoot application project that mocks the government agencies' remote online services.
@@ -21,6 +21,7 @@ A java-SpringBoot application project that mocks the government agencies' remote
 - Allows rescinding permit requests: **/rescindPermitRequest**
 
 When a new permit request is added into the data-base the status for it is : **NOT_STARTED**
+
 The REST services can set the statuses to: **APPROVED/DENIED/IN_PROGRESS** and BPM Suite processes consume the statuses via REST services to decide the status of the permit requests.
 
 ### SolarVillageProj
