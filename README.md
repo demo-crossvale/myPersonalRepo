@@ -296,7 +296,7 @@ Check the terminal output:
 20:33:17,405 INFO  [stdout] (pool-35-thread-2) New order permit request denied!
 ```
 
-### Scenario 4: Approval scenario for NewOrder process with re-assigned, approved HOA user task
+### Scenario 5: Approval scenario for NewOrder process with re-assigned, approved HOA user task
 1. Post a new order:
 ```
 ./post_new_order.sh "4201 Spring Valley Rd" "23500" "true" "03/15/2018"
@@ -332,6 +332,39 @@ Check the terminal output:
 20:16:27,358 INFO  [stdout] (pool-35-thread-1) Government Permit Process approval flag: true
 20:16:27,361 INFO  [stdout] (pool-35-thread-1) Permit Approved for order id: 23500
 ```
+
+### Scenario 6: Denial scenario for NewOrder process: electrical permit denied, structural permit approved with compensation
+1. Post a new order:
+```
+./post_new_order.sh "4201 Spring Valley Rd" "37000" "false"
+```
+2. View status of the processes:
+```
+./get_process_instances.sh
+```
+4. Set the mocking services:
+```
+http://localhost:8009/setAllPermit?id=37000&electricalStatus=DENIED&structuralStatus=APPROVED
+```
+Check the terminal output:
+```
+20:51:37,902 INFO  [stdout] (pool-35-thread-3) Completed: Electrical Permit REST Request
+20:51:37,906 INFO  [stdout] (pool-35-thread-3) Electrical Permit Request approved flag: DENIED
+20:51:37,922 INFO  [stdout] (pool-35-thread-1) Initiated: Structural Permit REST Request
+20:51:37,922 INFO  [stdout] (pool-35-thread-1) For permit request ID: 37000
+20:51:37,927 INFO  [stdout] (pool-35-thread-1) Completed: Structural Permit REST Request
+20:51:37,929 INFO  [stdout] (pool-35-thread-1) Structural Permit Request approved flag: APPROVED
+20:51:37,930 INFO  [stdout] (pool-35-thread-1) Electrical permit approved flag: false
+20:51:37,930 INFO  [stdout] (pool-35-thread-1) Structural permit approved flag: true
+20:51:37,931 INFO  [stdout] (pool-35-thread-1) Government Permit denied!
+20:51:37,934 INFO  [stdout] (pool-35-thread-1) Initiated: Compensation process
+20:51:37,941 INFO  [stdout] (pool-35-thread-1) Completed: Compensation process
+20:51:37,953 INFO  [stdout] (pool-35-thread-1) Government permit request process completed!
+20:51:37,953 INFO  [stdout] (pool-35-thread-1) Government Permit Process approval flag: false
+20:51:37,955 INFO  [stdout] (pool-35-thread-1) New order permit request denied!
+
+```
+
 
 
 ## References:
