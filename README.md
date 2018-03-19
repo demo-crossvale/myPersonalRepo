@@ -43,6 +43,7 @@ Following is the process diagram for NewOrder process:
 This is a subprocess that gets invoked from NewOrder process when the execution requires Government Electrical and Structural permits.
 The process binds the reference-id recieved from its parent process (NewOrder) and builds a permit request requesting the government-mock-service to add an entry in the database for the reference-id. The process splits the token of execution using a parallel gateway so the electrical and structural permit approvals can execute in parallel.
 The execution waits until the government permits are either approved/denied. 
+
 A 5-seconds timer keeps the permit requests waiting until their statuses are decided. The permit is approved only if both electrical and structural permits approved. If the process is denied (at least one process was denied) then a compensation event is triggered that rescinds the permits status in the database.
 
 Following is the process diagram for GovernmentPermit process:
