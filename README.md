@@ -68,7 +68,7 @@ Following is the process diagram for GovernmentPermit process:
 ```
 $ ./add-user.sh -a --user ragrahari --password password@1 --role kie-server,admin,rest-all,analyst,sales
 $ ./add-user.sh -a --user execuser --password password@1 --role kie-server,admin,rest-all,analyst,executive
-Start the EAP:
+-- Start the EAP:
 $ ./standalone.sh
 ```
 ### Set up Email Service:
